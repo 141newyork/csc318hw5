@@ -1,0 +1,150 @@
+<!-- index.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    
+    <title>Star Wars Quote App</title>
+  </head>
+
+  <body>
+    <div class="header">
+      <h1 class="title">May Node and Express be with you.</h1>
+    </div>
+
+    <div class="row">
+      <div class="box add-quote-box">
+        <h2 class="box-title">Add quote</h2>
+        <form class="collect" action="/quotes" method="POST">
+          <input class="collect" type="text" placeholder="name" name="name" />
+          <input class="collect" type="text" placeholder="quote" name="quote" />
+          <br />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <div class="box darth-invades-box">
+        <h2 class="box-title">Darth Vader invades!</h2>
+        <p>Replace first Yoda's quote with a quote written by Darth Vader</p>
+        <button id="update-button">Replace Yoda's quote</button>
+      </div>
+
+      <div class="box remove-vader-box">
+        <h2 class="box-title">Remove Darth Vader!</h2>
+        <p>
+          Delete one Darth Vader's quote.
+          <br />Does nothing if there are no more <br />Darth Vader's quote
+        </p>
+        <div id="message"></div>
+        <button id="delete-button">Delete Darth Vader's quote</button>
+      </div>
+    </div>
+
+    <div class="quotes-box">
+      <h2>Quotes</h2>
+      <ul class="quotes">
+        <!-- Loop through quotes -->
+        <% for(var i = 0; i < quotes.length; i++) {%>
+        <li class="quote">
+          <!-- Output name from the iterated quote object -->
+          <span><%= quotes[i].name %></span>:
+          <!-- Output quote from the iterated quote object -->
+          <span><%= quotes[i].quote %></span>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
+<style>
+    body, h1, h2, h3, p, ul, li {
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://images.hdqwalls.com/wallpapers/4k-darth-vader-5q.jpg");
+        background-repeat: no-repeat;
+        background-size: cover; /* Adjust to "contain" if you want the image to fit entirely within the body */
+        background-position: center center;
+        line-height: 1.6;
+      }
+      
+      .container {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  background-color: rgba(51, 51, 51, 0.8); /* 0.8 is the alpha value (opacity) ranging from 0 (transparent) to 1 (opaque) */
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.box {
+  background-color: rgba(255, 255, 255, 0.8); /* 0.8 is the alpha value (opacity) ranging from 0 (transparent) to 1 (opaque) */
+  border: 1px solid #ddd;
+  padding: 1rem;
+  flex-basis: 30%;
+}
+
+.box-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+form.collect {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+input.collect {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.quotes-box {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.8); /* 0.8 is the alpha value (opacity) ranging from 0 (transparent) to 1 (opaque) */
+  border: 1px solid #ddd;
+}
+
+.quotes {
+  list-style: none;
+  padding: 0;
+}
+
+.quote {
+  margin-bottom: 0.5rem;
+}
+
+span {
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+      </style>
